@@ -1,5 +1,5 @@
 import { Component } from "react";
-import InputForm from "./components/InputForm/InputForm";
+import ContactForm from "./components/ContactForm/ContactForm";
 //import shortid from 'shortid';
 
 //const nameContactId = shortid.generate();
@@ -13,26 +13,12 @@ class App extends Component {
         name: '',
     }
 
-    // handleChange = (element) => {
-    //     const { name, value } = element.target;
-    //     this.setState ({ [name]: value }); 
-    // };
-
-    // handleSubmit = (el) => {
-    //     el.preventDefault();
-    //     console.log(el)
-    //     const contactName = { el, id: {nameContactId} };
-    //     this.setState((prevState) => ({
-    //         contacts: [...prevState, contactName],
-    //     }));
-    //     this.props.onSubmit(this.state);
-    // }
 
     render() {
         return (
             <div>
                 <h1>Phonebook</h1>
-                <InputForm />
+                <ContactForm />
             </div>
         )
     }
