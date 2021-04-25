@@ -8,10 +8,10 @@ import ContactForm from "./components/ContactForm/ContactForm";
 
 
 class App extends Component { 
-    state = {
-        contacts: [],
-        name: '',
-    }
+    // state = {
+    //     contacts: [],
+    //     name: '',
+    // }
 
 
     render() {
