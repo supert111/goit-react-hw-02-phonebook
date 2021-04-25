@@ -1,0 +1,17 @@
+.wrapper {
+    width: 350px;
+    height: 100px;
+    padding: 20px;
+    border: 2px solid #302b2b;
+}
+
+.input_display {
+    display: flex;
+    margin: 10px 0 20px;
+}
+
+.button_prime {
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
