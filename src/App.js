@@ -1,19 +1,22 @@
-import MyFirstComponent from './components/MyFirstComponent';
-import MySecondComponent from './components/MySecondComponent';
+import { Component } from "react";
+import Input from "../src/components/Input/Input";
+// import MyFirstComponent from './components/MyFirstComponent';
+// import MySecondComponent from './components/MySecondComponent';
 
 
-function App () {
-    const user = {
-        name: 'Iryna',
-    };
+class App extends Component { 
+    state = {
+        contacts: [],
+        name: '',
+    }
 
-    return (
-        <div className="App"> 
-        <h1>Hello React Mykola </h1>
-        <MyFirstComponent jkhkj={user} />
-        <MySecondComponent user={user} />
-        </div>
-
-    );
+    render() {
+        return (
+            <div>
+                <h1>Phonebook</h1>
+                <Input />
+            </div>
+        )
+    }
 }
 export default App;
