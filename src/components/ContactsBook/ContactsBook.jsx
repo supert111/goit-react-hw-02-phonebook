@@ -6,7 +6,7 @@ const ContactsBook = ({phoneBook}) => {
             <h2>Contacts</h2>
             <ul>
                 {phoneBook.map(nameContact => (
-                     <li key={nameContact.id}>{nameContact.name}</li>
+                     <li key={nameContact.id}>{nameContact.name}: {nameContact.number}</li>
                 ))}
             </ul>
         </>
