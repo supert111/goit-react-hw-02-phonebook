@@ -1,7 +1,7 @@
 import { Component } from "react";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import Filter from "./components/Filter/Filter";
+import ContactForm from "./components/ContactForm";
+import ContactList from "./components/ContactList";
+import Filter from "./components/Filter";
 import shortid from 'shortid';
 
 class App extends Component { 
@@ -13,21 +13,30 @@ class App extends Component {
             {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
         ],
         filter: '',
-    }
+    };
 
     addContact = ({ name, number }) => {
         const contactName = { name, number, id: shortid.generate()};
         const { contacts } = this.state;
-        contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
+        const duplicateName = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
+        if(duplicateName) {
+            alert(`${name} is already in contacts.`);
+        }
         this.setState((prevState) => ({
             contacts: [...prevState.contacts, contactName,]
         }));
-    }
+    };
+
+    deleteContact = (contactId) => {
+        this.setState(({ contacts }) => ({
+            contacts: contacts.filter(contact => contact.id !== contactId)
+        }))
+    };
     
     handleFilter = (element) => {
         const { value } = element.target;
         this.setState ({ filter: value });  
-    }
+    };
 
     searchByFilter = () => {
         const { contacts, filter } = this.state;
@@ -35,7 +44,7 @@ class App extends Component {
         return contacts.filter(contact => 
             contact.name.toLocaleLowerCase().includes(caseInsensitive)
         );
-    }
+    };
 
     render() {
         const seachContact = this.searchByFilter();
@@ -46,7 +55,7 @@ class App extends Component {
                 <h2>Contacts</h2>
                 <Filter onChange={this.handleFilter}/>
                 {this.state.contacts.length !== 0 && 
-                <ContactList phoneBook={seachContact}/>
+                <ContactList phoneBook={seachContact} onDeleteContact={this.deleteContact}/>
                 }                
             </div>
         )
