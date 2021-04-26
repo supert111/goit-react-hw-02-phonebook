@@ -23,19 +23,20 @@ class App extends Component {
     }
     
     handleFilter = (element) => {
-        const { filter, value } = element.target;
+        const { value } = element.target;
         this.setState ({ filter: value });  
     }
 
     searchByFilter = () => {
         const { contacts, filter } = this.state;
-        const caseInsensitive = filter.toLocaleLowerCase;
+        const caseInsensitive = filter.toLocaleLowerCase();
         return contacts.filter(contact => 
             contact.name.toLocaleLowerCase().includes(caseInsensitive)
         );
     }
 
     render() {
+        const seachContact = this.searchByFilter();
         return (
             <div>
                 <h1>Phonebook</h1>
@@ -43,9 +44,8 @@ class App extends Component {
                 <h2>Contacts</h2>
                 <Filter onChange={this.handleFilter}/>
                 {this.state.contacts.length !== 0 && 
-                <ContactList phoneBook={this.state.contacts}/>
-                }
-                
+                <ContactList phoneBook={seachContact}/>
+                }                
             </div>
         )
     }
