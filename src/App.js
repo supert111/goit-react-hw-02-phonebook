@@ -13,8 +13,6 @@ class App extends Component {
             {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
         ],
         filter: '',
-        name: '',
-        number: '',
     }
 
     addContact = ({ name, number }) => {
@@ -22,7 +20,20 @@ class App extends Component {
         this.setState((prevState) => ({
             contacts: [...prevState.contacts, contactName,]
         }));
-    }    
+    }
+    
+    handleFilter = (element) => {
+        const { filter, value } = element.target;
+        this.setState ({ filter: value });  
+    }
+
+    searchByFilter = () => {
+        const { contacts, filter } = this.state;
+        const caseInsensitive = filter.toLocaleLowerCase;
+        return contacts.filter(contact => 
+            contact.name.toLocaleLowerCase().includes(caseInsensitive)
+        );
+    }
 
     render() {
         return (
@@ -30,7 +41,7 @@ class App extends Component {
                 <h1>Phonebook</h1>
                 <ContactForm onSubmit={this.addContact}/>
                 <h2>Contacts</h2>
-                <Filter />
+                <Filter onChange={this.handleFilter}/>
                 {this.state.contacts.length !== 0 && 
                 <ContactList phoneBook={this.state.contacts}/>
                 }
