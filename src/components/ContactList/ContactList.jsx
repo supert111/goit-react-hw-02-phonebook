@@ -6,7 +6,7 @@ const ContactList = ({ phoneBook, onDeleteContact }) => {
             <ul>
                 {phoneBook.map(nameContact => (
                      <li key={nameContact.id}>{nameContact.name}: {nameContact.number}
-                     <button type="button" onClick={onDeleteContact(id)}>Delete</button>
+                     <button type="button" onClick={()=>onDeleteContact(nameContact.id)}>Delete</button>
                      </li>
                 ))}
             </ul>
@@ -19,7 +19,7 @@ ContactList.propTypes = {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        number: PropTypes.number.isRequired,
+        number: PropTypes.string.isRequired,
       }),
     ),
     onDeleteContact: PropTypes.func.isRequired,
