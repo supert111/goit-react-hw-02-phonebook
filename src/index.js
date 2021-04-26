@@ -9,9 +9,3 @@ ReactDOM.render(
   ,
   document.getElementById('root')
 );
-
-
-
-// const link = React.createElement('a', { href: "reactjs.org" }, "Ссылочка" );
-
-// console.log(link);

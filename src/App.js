@@ -2,6 +2,7 @@ import { Component } from "react";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import Filter from "./components/Filter";
+import styles from "./App.module.css"
 import shortid from 'shortid';
 
 class App extends Component { 
@@ -21,10 +22,16 @@ class App extends Component {
         const duplicateName = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
         if(duplicateName) {
             alert(`${name} is already in contacts.`);
+            return;
         }
-        this.setState((prevState) => ({
-            contacts: [...prevState.contacts, contactName,]
-        }));
+        if(name === "") {
+            alert(`Please fill out the form it is empty.`);
+        }
+        else {
+            this.setState((prevState) => ({
+                contacts: [...prevState.contacts, contactName,]
+            }));
+        }         
     };
 
     deleteContact = (contactId) => {
@@ -49,14 +56,16 @@ class App extends Component {
     render() {
         const seachContact = this.searchByFilter();
         return (
-            <div>
-                <h1>Phonebook</h1>
-                <ContactForm onSubmit={this.addContact}/>
-                <h2>Contacts</h2>
-                <Filter onChange={this.handleFilter}/>
-                {this.state.contacts.length !== 0 && 
-                <ContactList phoneBook={seachContact} onDeleteContact={this.deleteContact}/>
-                }                
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <h1>Phonebook</h1>
+                    <ContactForm onSubmit={this.addContact}/>
+                    <h2>Contacts</h2>
+                    <Filter onChange={this.handleFilter}/>
+                    {this.state.contacts.length !== 0 && 
+                    <ContactList phoneBook={seachContact} onDeleteContact={this.deleteContact}/>
+                    }  
+                </div>
             </div>
         )
     }
