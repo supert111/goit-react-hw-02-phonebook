@@ -1,5 +1,4 @@
 import { Component } from "react";
-import ContactsBook from "../ContactsBook/ContactsBook";
 import styles from "./ContactForm.module.css";
 import shortid from 'shortid';
 
@@ -8,16 +7,9 @@ const phoneInputId = shortid.generate();
 
 class ContactForm extends Component { 
     state = {
-        contacts: [
-            {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-            {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-            {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-            {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-        ],
-        filter: '',
         name: '',
         number: '',
-    }
+    };
 
     handleChange = (element) => {
         const { name, value } = element.target;
@@ -26,11 +18,8 @@ class ContactForm extends Component {
 
     handleSubmit = (el) => {
         el.preventDefault();
-        const { name, number } = this.state;
-        const contactName = { name, number, id: shortid.generate()};
-        this.setState((prevState) => ({
-            contacts: [...prevState.contacts, contactName,]
-        }));
+        this.props.onSubmit(this.state);
+        this.setState({ name: '', number: '' });
     }
 
    render() {
@@ -61,9 +50,6 @@ class ContactForm extends Component {
                     </label>
                     <button className={styles.button_prime} type="submit" >Add contact</button>
                 </form>            
-                {this.state.contacts.length !== 0 && 
-                <ContactsBook phoneBook={this.state.contacts}/>
-                }
             </>
         )
     }

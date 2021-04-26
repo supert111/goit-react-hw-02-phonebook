@@ -1,9 +1,8 @@
 
 
-const ContactsBook = ({phoneBook}) => {
+const ContactList = ({phoneBook}) => {
     return (
         <>
-            <h2>Contacts</h2>
             <ul>
                 {phoneBook.map(nameContact => (
                      <li key={nameContact.id}>{nameContact.name}: {nameContact.number}</li>
@@ -13,4 +12,4 @@ const ContactsBook = ({phoneBook}) => {
     )
 }
 
-export default ContactsBook;
+export default ContactList;
