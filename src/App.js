@@ -17,6 +17,8 @@ class App extends Component {
 
     addContact = ({ name, number }) => {
         const contactName = { name, number, id: shortid.generate()};
+        const { contacts } = this.state;
+        contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
         this.setState((prevState) => ({
             contacts: [...prevState.contacts, contactName,]
         }));
